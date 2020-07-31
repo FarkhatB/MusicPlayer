@@ -1,6 +1,6 @@
 ﻿namespace MusicPlayer
 {
-    partial class Form1
+    partial class MainWindow
     {
         /// <summary>
         /// Обязательная переменная конструктора.
