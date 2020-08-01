@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.registrationGroup = new System.Windows.Forms.GroupBox();
-            this.tb_login = new System.Windows.Forms.TextBox();
-            this.tb_name = new System.Windows.Forms.TextBox();
-            this.tb_lastname = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_password = new System.Windows.Forms.TextBox();
+            this.btn_register = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tb_repeat_password = new System.Windows.Forms.TextBox();
-            this.btn_register = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_password = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_lastname = new System.Windows.Forms.TextBox();
+            this.tb_name = new System.Windows.Forms.TextBox();
+            this.tb_login = new System.Windows.Forms.TextBox();
             this.registrationGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,69 +63,15 @@
             this.registrationGroup.TabStop = false;
             this.registrationGroup.Text = "Регистрация";
             // 
-            // tb_login
+            // btn_register
             // 
-            this.tb_login.Location = new System.Drawing.Point(122, 19);
-            this.tb_login.Name = "tb_login";
-            this.tb_login.Size = new System.Drawing.Size(233, 20);
-            this.tb_login.TabIndex = 0;
-            // 
-            // tb_name
-            // 
-            this.tb_name.Location = new System.Drawing.Point(122, 45);
-            this.tb_name.Name = "tb_name";
-            this.tb_name.Size = new System.Drawing.Size(233, 20);
-            this.tb_name.TabIndex = 1;
-            // 
-            // tb_lastname
-            // 
-            this.tb_lastname.Location = new System.Drawing.Point(122, 71);
-            this.tb_lastname.Name = "tb_lastname";
-            this.tb_lastname.Size = new System.Drawing.Size(233, 20);
-            this.tb_lastname.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Логин:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Имя:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Фамилия:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Пароль:";
-            // 
-            // tb_password
-            // 
-            this.tb_password.Location = new System.Drawing.Point(122, 97);
-            this.tb_password.Name = "tb_password";
-            this.tb_password.Size = new System.Drawing.Size(233, 20);
-            this.tb_password.TabIndex = 6;
+            this.btn_register.Location = new System.Drawing.Point(122, 150);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(233, 23);
+            this.btn_register.TabIndex = 10;
+            this.btn_register.Text = "Зарегистрироваться";
+            this.btn_register.UseVisualStyleBackColor = true;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
             // label5
             // 
@@ -141,17 +87,74 @@
             // 
             this.tb_repeat_password.Location = new System.Drawing.Point(122, 123);
             this.tb_repeat_password.Name = "tb_repeat_password";
+            this.tb_repeat_password.PasswordChar = '*';
             this.tb_repeat_password.Size = new System.Drawing.Size(233, 20);
             this.tb_repeat_password.TabIndex = 8;
             // 
-            // btn_register
+            // label4
             // 
-            this.btn_register.Location = new System.Drawing.Point(122, 150);
-            this.btn_register.Name = "btn_register";
-            this.btn_register.Size = new System.Drawing.Size(233, 23);
-            this.btn_register.TabIndex = 10;
-            this.btn_register.Text = "Зарегистрироваться";
-            this.btn_register.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Пароль:";
+            // 
+            // tb_password
+            // 
+            this.tb_password.Location = new System.Drawing.Point(122, 97);
+            this.tb_password.Name = "tb_password";
+            this.tb_password.PasswordChar = '*';
+            this.tb_password.Size = new System.Drawing.Size(233, 20);
+            this.tb_password.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Фамилия:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Имя:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Логин:";
+            // 
+            // tb_lastname
+            // 
+            this.tb_lastname.Location = new System.Drawing.Point(122, 71);
+            this.tb_lastname.Name = "tb_lastname";
+            this.tb_lastname.Size = new System.Drawing.Size(233, 20);
+            this.tb_lastname.TabIndex = 2;
+            // 
+            // tb_name
+            // 
+            this.tb_name.Location = new System.Drawing.Point(122, 45);
+            this.tb_name.Name = "tb_name";
+            this.tb_name.Size = new System.Drawing.Size(233, 20);
+            this.tb_name.TabIndex = 1;
+            // 
+            // tb_login
+            // 
+            this.tb_login.Location = new System.Drawing.Point(122, 19);
+            this.tb_login.Name = "tb_login";
+            this.tb_login.Size = new System.Drawing.Size(233, 20);
+            this.tb_login.TabIndex = 0;
             // 
             // MainWindow
             // 
