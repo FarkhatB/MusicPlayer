@@ -40,7 +40,14 @@
             this.tb_lastname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_login = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tb_auth_login = new System.Windows.Forms.TextBox();
+            this.tb_auth_password = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btn_auth = new System.Windows.Forms.Button();
             this.registrationGroup.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // registrationGroup
@@ -156,16 +163,75 @@
             this.tb_login.Size = new System.Drawing.Size(233, 20);
             this.tb_login.TabIndex = 0;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_auth);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.tb_auth_password);
+            this.groupBox1.Controls.Add(this.tb_auth_login);
+            this.groupBox1.Location = new System.Drawing.Point(401, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(369, 200);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // tb_auth_login
+            // 
+            this.tb_auth_login.Location = new System.Drawing.Point(110, 60);
+            this.tb_auth_login.Name = "tb_auth_login";
+            this.tb_auth_login.Size = new System.Drawing.Size(217, 20);
+            this.tb_auth_login.TabIndex = 0;
+            // 
+            // tb_auth_password
+            // 
+            this.tb_auth_password.Location = new System.Drawing.Point(110, 86);
+            this.tb_auth_password.Name = "tb_auth_password";
+            this.tb_auth_password.Size = new System.Drawing.Size(217, 20);
+            this.tb_auth_password.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(47, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Логин:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(47, 93);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Пароль:";
+            // 
+            // btn_auth
+            // 
+            this.btn_auth.Location = new System.Drawing.Point(119, 150);
+            this.btn_auth.Name = "btn_auth";
+            this.btn_auth.Size = new System.Drawing.Size(189, 23);
+            this.btn_auth.TabIndex = 2;
+            this.btn_auth.Text = "Авторизоваться";
+            this.btn_auth.UseVisualStyleBackColor = true;
+            this.btn_auth.Click += new System.EventHandler(this.btn_auth_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.registrationGroup);
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.registrationGroup.ResumeLayout(false);
             this.registrationGroup.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -184,6 +250,12 @@
         private System.Windows.Forms.TextBox tb_lastname;
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.TextBox tb_login;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tb_auth_password;
+        private System.Windows.Forms.TextBox tb_auth_login;
+        private System.Windows.Forms.Button btn_auth;
     }
 }
 
