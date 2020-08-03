@@ -10,11 +10,14 @@ using System.Net;
 using RestSharp;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace MusicPlayer
 {
     public partial class MainWindow : Form
     {
+        TokenData data; // null - переменная никуда не указывает
+
         public MainWindow()
         {
             InitializeComponent();
@@ -57,6 +60,7 @@ namespace MusicPlayer
 
         private void btn_auth_Click(object sender, EventArgs e)
         {
+            
             if (tb_auth_password.Text != "")
             {
                 RestClient client = new RestClient("http://213.59.157.203/MusicXBackend/");
@@ -80,7 +84,7 @@ namespace MusicPlayer
                     // Для уточнения используется <T>.
                     // То есть нам нужно написать: JsonConvert.DeserializeObject<TokenData>(response.Content);
                     // <T> означает "Уточнить тип данных", используется в List<> чтобы уточнить, какой тип должен находиться внутри листа. 
-                    TokenData data = JsonConvert.DeserializeObject<TokenData>(response.Content);
+                    data = JsonConvert.DeserializeObject<TokenData>(response.Content);
                     MessageBox.Show("Авторизация удалась! Токен: " + data.token);
                 }
                 else if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -91,6 +95,28 @@ namespace MusicPlayer
                 {
                     MessageBox.Show("Не удалось авторизоваться!  Код ошибки: " + response.StatusCode);
                 }
+            }
+        }
+
+        private void btn_create_playlist_Click(object sender, EventArgs e)
+        {
+            if (data == null)
+            {
+                MessageBox.Show("Сначала авторизируйся!");
+            }
+            else
+            {
+                RestClient client = new RestClient("http://213.59.157.203/MusicXBackend/");
+                RestRequest request = new RestRequest("/api/playlist");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("Authorization", "Bearer " + data.token);
+                PlaylistData playlist = new PlaylistData();
+                playlist.name = tb_playlist_name.Text;
+                playlist.description = tb_description.Text;
+                playlist.Internal = ch_private.Checked;
+                request.AddJsonBody(playlist);
+                IRestResponse response = client.Post(request);
+                MessageBox.Show("Код ответа: " + response.StatusCode + ", тело ответа: " + response.Content);
             }
         }
     }
