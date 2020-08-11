@@ -35,11 +35,7 @@ namespace MusicPlayer
                 // Любой Http запрос состоит из Заголовков (Headers) и Тела (Body)
                 request.AddHeader("Content-Type", "application/json"); // Говорим серверу, что мы отправили данные типа JSON (application/json)
                 // request.AddHeader("ИМЯ ЗАГОЛОВКА ЗАПРОСА", "ЗНАЧЕНИЕ ЗАГОЛОВКА ЗАПРОСА");
-                RegisterData register = new RegisterData();
-                register.username = tb_login.Text;
-                register.password = tb_password.Text;
-                register.name = tb_name.Text;
-                register.lastname = tb_lastname.Text;
+                RegisterData register = new RegisterData(tb_login.Text, tb_password.Text, tb_name.Text, tb_lastname.Text);
                 // Тело запроса - обычная строка в виде json
                 request.AddJsonBody(register); // Устанавливаем тело запроса - json строку с нашими данными
                 IRestResponse response = client.Post(request); // POST запрос и получаем ответ в переменную IRestResponse response
@@ -66,13 +62,12 @@ namespace MusicPlayer
                 RestClient client = new RestClient("http://213.59.157.203/MusicXBackend/");
                 RestRequest request = new RestRequest("/api/authenticate");
                 request.AddHeader("Content-Type", "application/json");
-                AuthData auth = new AuthData();
-                auth.username = tb_auth_login.Text;
-                auth.password = tb_auth_password.Text;
+                AuthData auth = new AuthData(tb_auth_login.Text, tb_auth_password.Text);
                 request.AddJsonBody(auth);
                 IRestResponse response = client.Post(request);
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
+                    #region Комментарии
                     // Тело ответа: response.Content
                     // Выглядит вот так:
                     // { "token" : "dfkjdshfkjsdhfjkdshfkdsb" }
@@ -84,6 +79,7 @@ namespace MusicPlayer
                     // Для уточнения используется <T>.
                     // То есть нам нужно написать: JsonConvert.DeserializeObject<TokenData>(response.Content);
                     // <T> означает "Уточнить тип данных", используется в List<> чтобы уточнить, какой тип должен находиться внутри листа. 
+                    #endregion
                     data = JsonConvert.DeserializeObject<TokenData>(response.Content);
                     MessageBox.Show("Авторизация удалась! Токен: " + data.token);
                 }
@@ -110,14 +106,47 @@ namespace MusicPlayer
                 RestRequest request = new RestRequest("/api/playlist");
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("Authorization", "Bearer " + data.token);
-                PlaylistData playlist = new PlaylistData();
-                playlist.name = tb_playlist_name.Text;
-                playlist.description = tb_description.Text;
-                playlist.Internal = ch_private.Checked;
+                PlaylistData playlist = new PlaylistData(tb_playlist_name.Text, tb_description.Text, ch_private.Checked);
                 request.AddJsonBody(playlist);
                 IRestResponse response = client.Post(request);
                 MessageBox.Show("Код ответа: " + response.StatusCode + ", тело ответа: " + response.Content);
             }
+        }
+
+        private void btn_getPlaylists_Click(object sender, EventArgs e)
+        {
+            RestClient client = new RestClient("http://213.59.157.203/MusicXBackend/");
+            RestRequest request = new RestRequest("/api/playlists");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Authorization", "Bearer " + data.token);
+            IRestResponse response = client.Get(request);
+            MessageBox.Show("Тело: " +  response.Content);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                PlaylistContent playlistContent = JsonConvert.DeserializeObject<PlaylistContent>(response.Content);
+                //MessageBox.Show(playlistContent.content[0]);
+                for (int i = 0; i < playlistContent.content.Count; i++)
+                {
+                    lb_playlists.Items.Add(playlistContent.content[i].name);
+                }
+            }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e) // Во время загрузки формы
+        {
+            RestClient client = new RestClient("http://213.59.157.203/MusicXBackend/");
+            RestRequest request = new RestRequest("/api/authenticate");
+            request.AddHeader("Content-Type", "application/json");
+            AuthData auth = new AuthData("rtu1", "rtu1");
+            request.AddJsonBody(auth);
+            IRestResponse response = client.Post(request);
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                MessageBox.Show("JSON: " + response.Content);
+                data = JsonConvert.DeserializeObject<TokenData>(response.Content);
+                MessageBox.Show("Авторизация удалась! Токен: " + data.token);
+            }
+
         }
     }
 }

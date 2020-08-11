@@ -12,5 +12,13 @@ namespace MusicPlayer
         public string password;
         public string lastname;
         public string name;
+
+        public RegisterData(string username, string password, string lastname, string name)
+        {
+            this.username = username;
+            this.password = password;
+            this.lastname = lastname;
+            this.name = name;
+        }
     }
 }

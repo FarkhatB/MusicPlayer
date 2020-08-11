@@ -10,8 +10,16 @@ namespace MusicPlayer
 {
     class PlaylistData
     {
+        public string id;
         public string name;
         public string description;
         public bool confidential;
+
+        public PlaylistData(string name, string description, bool confidential)
+        {
+            this.name = name;
+            this.description = description;
+            this.confidential = confidential;
+        }
     }
 }

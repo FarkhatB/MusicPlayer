@@ -47,14 +47,16 @@
             this.tb_auth_password = new System.Windows.Forms.TextBox();
             this.tb_auth_login = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tb_playlist_name = new System.Windows.Forms.TextBox();
-            this.tb_description = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.btn_create_playlist = new System.Windows.Forms.Button();
+            this.ch_private = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.ch_private = new System.Windows.Forms.CheckBox();
-            this.btn_create_playlist = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_description = new System.Windows.Forms.TextBox();
+            this.tb_playlist_name = new System.Windows.Forms.TextBox();
+            this.lb_playlists = new System.Windows.Forms.ListBox();
+            this.btn_getPlaylists = new System.Windows.Forms.Button();
             this.registrationGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -246,29 +248,33 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Создание плэйлиста";
             // 
-            // tb_playlist_name
+            // btn_create_playlist
             // 
-            this.tb_playlist_name.Location = new System.Drawing.Point(134, 46);
-            this.tb_playlist_name.Name = "tb_playlist_name";
-            this.tb_playlist_name.Size = new System.Drawing.Size(212, 20);
-            this.tb_playlist_name.TabIndex = 0;
+            this.btn_create_playlist.Location = new System.Drawing.Point(134, 173);
+            this.btn_create_playlist.Name = "btn_create_playlist";
+            this.btn_create_playlist.Size = new System.Drawing.Size(169, 23);
+            this.btn_create_playlist.TabIndex = 3;
+            this.btn_create_playlist.Text = "Создать плэйлист";
+            this.btn_create_playlist.UseVisualStyleBackColor = true;
+            this.btn_create_playlist.Click += new System.EventHandler(this.btn_create_playlist_Click);
             // 
-            // tb_description
+            // ch_private
             // 
-            this.tb_description.Location = new System.Drawing.Point(134, 72);
-            this.tb_description.Multiline = true;
-            this.tb_description.Name = "tb_description";
-            this.tb_description.Size = new System.Drawing.Size(212, 50);
-            this.tb_description.TabIndex = 0;
+            this.ch_private.AutoSize = true;
+            this.ch_private.Location = new System.Drawing.Point(213, 128);
+            this.ch_private.Name = "ch_private";
+            this.ch_private.Size = new System.Drawing.Size(15, 14);
+            this.ch_private.TabIndex = 2;
+            this.ch_private.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // label11
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 46);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(113, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Название плэйлиста";
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(11, 129);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Приватный?";
             // 
             // label9
             // 
@@ -288,44 +294,61 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "label8";
             // 
-            // label11
+            // label8
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(11, 129);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Приватный?";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 46);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(113, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Название плэйлиста";
             // 
-            // ch_private
+            // tb_description
             // 
-            this.ch_private.AutoSize = true;
-            this.ch_private.Location = new System.Drawing.Point(213, 128);
-            this.ch_private.Name = "ch_private";
-            this.ch_private.Size = new System.Drawing.Size(15, 14);
-            this.ch_private.TabIndex = 2;
-            this.ch_private.UseVisualStyleBackColor = true;
+            this.tb_description.Location = new System.Drawing.Point(134, 72);
+            this.tb_description.Multiline = true;
+            this.tb_description.Name = "tb_description";
+            this.tb_description.Size = new System.Drawing.Size(212, 50);
+            this.tb_description.TabIndex = 0;
             // 
-            // btn_create_playlist
+            // tb_playlist_name
             // 
-            this.btn_create_playlist.Location = new System.Drawing.Point(134, 173);
-            this.btn_create_playlist.Name = "btn_create_playlist";
-            this.btn_create_playlist.Size = new System.Drawing.Size(169, 23);
-            this.btn_create_playlist.TabIndex = 3;
-            this.btn_create_playlist.Text = "Создать плэйлист";
-            this.btn_create_playlist.UseVisualStyleBackColor = true;
-            this.btn_create_playlist.Click += new System.EventHandler(this.btn_create_playlist_Click);
+            this.tb_playlist_name.Location = new System.Drawing.Point(134, 46);
+            this.tb_playlist_name.Name = "tb_playlist_name";
+            this.tb_playlist_name.Size = new System.Drawing.Size(212, 20);
+            this.tb_playlist_name.TabIndex = 0;
+            // 
+            // lb_playlists
+            // 
+            this.lb_playlists.FormattingEnabled = true;
+            this.lb_playlists.Location = new System.Drawing.Point(401, 139);
+            this.lb_playlists.Name = "lb_playlists";
+            this.lb_playlists.Size = new System.Drawing.Size(387, 251);
+            this.lb_playlists.TabIndex = 3;
+            // 
+            // btn_getPlaylists
+            // 
+            this.btn_getPlaylists.Location = new System.Drawing.Point(401, 397);
+            this.btn_getPlaylists.Name = "btn_getPlaylists";
+            this.btn_getPlaylists.Size = new System.Drawing.Size(135, 23);
+            this.btn_getPlaylists.TabIndex = 4;
+            this.btn_getPlaylists.Text = "Получить плэйлисты";
+            this.btn_getPlaylists.UseVisualStyleBackColor = true;
+            this.btn_getPlaylists.Click += new System.EventHandler(this.btn_getPlaylists_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_getPlaylists);
+            this.Controls.Add(this.lb_playlists);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.registrationGroup);
             this.Name = "MainWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.registrationGroup.ResumeLayout(false);
             this.registrationGroup.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -365,6 +388,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tb_description;
         private System.Windows.Forms.TextBox tb_playlist_name;
+        private System.Windows.Forms.ListBox lb_playlists;
+        private System.Windows.Forms.Button btn_getPlaylists;
     }
 }
 
